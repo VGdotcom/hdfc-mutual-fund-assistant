@@ -39,6 +39,19 @@ jobs:
           python -m scripts.ingest_all --collection hdfc_funds
           echo "Ingestion completed successfully."
 
+      - name: Commit and Push Updated Corpus to GitHub
+        run: |
+          git config --global user.name "GitHub Action Scheduler"
+          git config --global user.email "action@github.com"
+          git add data/schemes.json .qdrant/
+          if git diff --staged --quiet; then
+            echo "No changes detected in scheme corpus or vector index."
+          else
+            git commit -m "chore(scheduler): auto-refresh HDFC scheme factsheet data and Qdrant index"
+            git push origin main
+            echo "Successfully pushed updated corpus to GitHub main branch."
+          fi
+
       - name: Upload Qdrant Index Artifacts (Backup)
         uses: actions/upload-artifact@v4
         with:

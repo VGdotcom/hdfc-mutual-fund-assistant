@@ -13,20 +13,45 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 from contextlib import asynccontextmanager
+import subprocess
+from apscheduler.schedulers.background import BackgroundScheduler
 
 # Global RAG Engine components
 retriever: Optional[RAGRetriever] = None
 llm_client: Optional[GroqLLMClient] = None
+scheduler: Optional[BackgroundScheduler] = None
+
+def run_scheduled_sync():
+    logger.info("[Scheduler] Starting background corpus synchronization...")
+    try:
+        res = subprocess.run(["python", "-m", "scripts.ingest_all", "--collection", "hdfc_funds"], capture_output=True, text=True)
+        if res.returncode == 0:
+            logger.info("[Scheduler] Background synchronization completed successfully.")
+            global retriever
+            if retriever:
+                retriever = RAGRetriever()
+        else:
+            logger.error(f"[Scheduler] Synchronization failed: {res.stderr}")
+    except Exception as e:
+        logger.error(f"[Scheduler] Error running synchronization: {e}")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global retriever, llm_client
+    global retriever, llm_client, scheduler
     logger.info("Initializing RAG Core Engine components...")
     retriever = RAGRetriever()
     llm_client = GroqLLMClient()
-    logger.info("==> RAG API Startup Complete.")
+    
+    logger.info("Initializing background APScheduler for automated corpus synchronization...")
+    scheduler = BackgroundScheduler()
+    # Schedule daily at 04:00 UTC (9:30 AM IST)
+    scheduler.add_job(run_scheduled_sync, 'cron', hour=4, minute=0, id='daily_corpus_sync')
+    scheduler.start()
+    logger.info("==> RAG API and Background Scheduler Startup Complete.")
     yield
-    logger.info("Shutting down RAG API...")
+    logger.info("Shutting down RAG API and background scheduler...")
+    if scheduler and scheduler.running:
+        scheduler.shutdown(wait=False)
 
 app = FastAPI(
     title="HDFC Mutual Fund FAQ Assistant API",

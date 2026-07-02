@@ -128,3 +128,19 @@ This document outlines the systematic, **5-phase roadmap** for developing and de
     - 100% success rate on refusing advisory prompts.
     - Strict adherence to the <= 3 sentence limit and single citation rule.
   - Finalize project `README.md`, setup instructions, and deployment documentation.
+
+---
+
+## Phase 6: Cloud Production Deployment (Hugging Face Spaces & Vercel)
+**Objective:** Deploy the full-stack system to scalable cloud platforms with decoupled frontend and backend architecture.
+
+### Milestones & Tasks:
+- **6.1 Hugging Face Spaces Backend Deployment (Docker SDK)**
+  - Configure root `Dockerfile` using Python 3.12-slim and non-root UID 1000 user (`user`) as mandated by Hugging Face security guidelines.
+  - Implement build-time vector store pre-indexing (`RUN python -m scripts.ingest_all --collection hdfc_funds`) so `.qdrant/` is embedded in the Docker image for 0-second cold start lag.
+  - Configure Uvicorn to listen on `0.0.0.0:${PORT:-7860}` (default Hugging Face Spaces port).
+  - Update CORS middleware in `api/main.py` (`allow_origins=["*"]`, `allow_credentials=False`) to guarantee universal fetch compatibility across domains.
+- **6.2 Vercel Frontend Deployment (React + Vite)**
+  - Configure dynamic API base URL resolution in `frontend/src/App.jsx` using `import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1'`.
+  - Provide `frontend/.env.example` guiding users to set `VITE_API_BASE_URL` in their Vercel Project Settings.
+  - Create `vercel.json` (in root and `frontend/`) with SPA wildcard rewrites (`/(.*) -> /index.html`) to ensure clean client-side routing without 404 errors.

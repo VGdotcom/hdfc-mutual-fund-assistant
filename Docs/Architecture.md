@@ -156,3 +156,27 @@ To keep the facts-only assistant accurate without requiring manual intervention,
   2. Compute document checksums (MD5/SHA256) to detect whether official documents have changed.
   3. If changes are detected, re-chunk and re-embed the updated sections into Qdrant.
   4. Update the `last_updated` timestamp in the metadata store so subsequent user queries reflect the freshest publication date.
+
+---
+
+## 7. Production Deployment Specification (Hugging Face Spaces & Vercel)
+
+The application is architected for decoupled, serverless/containerized cloud deployment:
+
+```mermaid
+graph LR
+    User["Client Browser"] -->|"HTTPS SPA Requests"| Vercel["Frontend Hosted on Vercel"]
+    Vercel -->|"API /api/v1/chat (CORS Safe)"| HF["Backend Hosted on Hugging Face Spaces (Docker SDK)"]
+    HF -->|"Local Vector Search"| Qdrant[".qdrant Local Store (Pre-indexed in Docker Image)"]
+```
+
+### 7.1 Backend Deployment (Hugging Face Spaces - Docker SDK)
+- **Containerization:** Uses the root `Dockerfile` running on Python 3.12-slim.
+- **Pre-computed Vector Database:** The Docker build step executes `python -m scripts.ingest_all --collection hdfc_funds`, pre-indexing the 105 chunks across all 5 schemes directly into `/app/.qdrant`. This guarantees **instant startup** on Hugging Face without cold-start indexing delays.
+- **Security & Port Binding:** Runs as non-root user `user` (UID 1000) and exposes default port `7860` (`PORT=7860`), fully compliant with Hugging Face Spaces Docker security rules.
+- **CORS Middleware:** Configured with `allow_origins=["*"]` and `allow_credentials=False` to ensure zero browser preflight or fetch rejections from custom frontend domains.
+
+### 7.2 Frontend Deployment (Vercel)
+- **Framework:** Deployed as a Vite Single Page Application (SPA).
+- **Environment Configuration:** Uses `import.meta.env.VITE_API_BASE_URL` to point dynamically to the Hugging Face Space backend URL (e.g., `https://<space-name>.hf.space/api/v1`).
+- **SPA Routing:** Configured via `vercel.json` with wildcard rewrites (`/(.*) -> /index.html`) to prevent 404 errors on browser refresh or direct URL navigation.

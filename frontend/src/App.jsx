@@ -39,26 +39,7 @@ const EXAMPLE_CARDS = [
 ];
 
 export default function App() {
-  const [messages, setMessages] = useState([
-    {
-      sender: "user",
-      text: "What is the historical 5-year return for HDFC Small Cap Fund compared to its benchmark?",
-      isInitialDemo: true
-    },
-    {
-      sender: "assistant",
-      text: "The HDFC Small Cap Fund has delivered a compounded annual growth rate (CAGR) of approximately 24.5% over the last 5 years. This outperformed its benchmark, the NIFTY Smallcap 250 TRI, which stood at 19.8% during the same period.",
-      citation: "https://groww.in/mutual-funds/hdfc-small-cap-fund-direct-growth",
-      footer: "Last updated from sources: 2026-07-01",
-      isRefusal: false,
-      isInitialDemo: true,
-      chartData: {
-        fund: "24.5%",
-        benchmark: "19.8%",
-        alpha: "+4.7% Alpha"
-      }
-    }
-  ]);
+  const [messages, setMessages] = useState([]);
   const [inputQuery, setInputQuery] = useState("");
   const [selectedScheme, setSelectedScheme] = useState(null);
   const [searchScheme, setSearchScheme] = useState("");

@@ -155,14 +155,6 @@ export default function App() {
           <h1 className="font-headline-md text-headline-md font-bold text-on-surface">HDFC Mutual Fund Assistant</h1>
           <span className="text-[10px] uppercase font-bold bg-primary-container/20 text-primary px-2 py-0.5 rounded-full border border-primary/20">RAG Verified</span>
         </div>
-        <div className="flex items-center gap-6">
-          <div className="hidden md:flex items-center gap-8 mr-10">
-            <a className="font-label-md text-label-md text-primary font-bold transition-transform active:scale-95" href="#">Portfolio</a>
-            <a className="font-label-md text-label-md text-on-surface-variant hover:bg-white/5 transition-transform active:scale-95 px-2 py-1 rounded" href="#">Explore</a>
-            <a className="font-label-md text-label-md text-on-surface-variant hover:bg-white/5 transition-transform active:scale-95 px-2 py-1 rounded" href="#">Support</a>
-          </div>
-          <button className="material-symbols-outlined text-surface-tint text-3xl hover:bg-white/5 p-2 rounded-full transition-transform active:scale-95" title="User Profile">account_circle</button>
-        </div>
       </nav>
 
       {/* Main Layout Container */}

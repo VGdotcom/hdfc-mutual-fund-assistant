@@ -85,6 +85,15 @@ class RAGRetriever:
             scheme_name=scheme_filter,
             collection_name=self.collection_name
         )
+        if scheme_filter:
+            has_profile = any("# Fund Profile:" in c.get("text", "") or "| Financial Metric |" in c.get("text", "") for c in results)
+            if not has_profile:
+                profile_chunk = self.store.get_scheme_profile(scheme_name=scheme_filter, collection_name=self.collection_name)
+                if profile_chunk:
+                    results = [profile_chunk] + results[:top_k - 1]
+            else:
+                results.sort(key=lambda c: 0 if ("# Fund Profile:" in c.get("text", "") or "| Financial Metric |" in c.get("text", "")) else 1)
+
         logger.info(f"Retrieved {len(results)} chunks for query: \"{query}\"")
         return results
 

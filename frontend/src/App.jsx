@@ -90,7 +90,7 @@ export default function App() {
       const data = response.data;
       const qLower = queryText.toLowerCase();
       const ansLower = (data.answer || "").toLowerCase();
-      const isPerf = qLower.includes("return") || qLower.includes("cagr") || qLower.includes("performance") || qLower.includes("alpha") || qLower.includes("growth") || ansLower.includes("cagr");
+      const isPerf = (qLower.includes("return") || qLower.includes("cagr") || qLower.includes("performance") || qLower.includes("alpha") || qLower.includes("growth rate") || ansLower.includes("cagr")) && !qLower.includes("expense") && !qLower.includes("exit") && !qLower.includes("sip") && !qLower.includes("nav") && !qLower.includes("minimum");
       
       let chartObj = data.chart_data;
       if (!chartObj && isPerf && !data.is_refusal) {

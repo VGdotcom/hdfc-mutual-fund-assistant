@@ -26,7 +26,7 @@ async def run_ingestion_pipeline(
     4. Generates 384-dimensional BGE embeddings
     5. Upserts into local Qdrant vector database
     """
-    if os.path.exists(qdrant_path):
+    if store is None and os.path.exists(qdrant_path) and qdrant_path != ":memory:":
         import shutil
         logger.info(f"Removing old vector cache at {qdrant_path} for clean indexing...")
         shutil.rmtree(qdrant_path, ignore_errors=True)

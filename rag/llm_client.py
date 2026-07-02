@@ -93,24 +93,7 @@ class GroqLLMClient:
             if title_match:
                 scheme_title = title_match.group(1).strip()
 
-            if "return" in q_lower or "cagr" in q_lower or "performance" in q_lower or "alpha" in q_lower or "historical" in q_lower or "growth" in q_lower or "5-year" in q_lower or "5 year" in q_lower:
-                bench_match = re.search(r'\|\s*\*\*Benchmark Index\*\*\s*\|\s*([^|]+)\s*\|', all_text)
-                bench_name = bench_match.group(1).strip() if bench_match else "its benchmark index"
-                if "small" in scheme_title.lower() or "small" in q_lower:
-                    return f"The {scheme_title} has delivered a compounded annual growth rate (CAGR) of approximately 24.5% over the last 5 years. This outperformed its benchmark, the NIFTY Smallcap 250 TRI, which stood at 19.8% during the same period."
-                elif "mid" in scheme_title.lower() or "mid" in q_lower:
-                    return f"The {scheme_title} has delivered a compounded annual growth rate (CAGR) of approximately 22.1% over the last 5 years. This outperformed its benchmark, the NIFTY Midcap 150 TRI, which stood at 18.4% during the same period."
-                elif "large" in scheme_title.lower() or "large" in q_lower:
-                    return f"The {scheme_title} has delivered a compounded annual growth rate (CAGR) of approximately 16.8% over the last 5 years. This tracked closely against its benchmark, the NIFTY 100 TRI, which stood at 15.2% during the same period."
-                elif "gold" in scheme_title.lower() or "gold" in q_lower:
-                    return f"The {scheme_title} has delivered an annualized return of approximately 13.4% over the last 5 years, tracking closely against domestic physical gold prices as per official disclosures."
-                else:
-                    return f"The {scheme_title} has delivered strong long-term compounded annual growth (CAGR) outperforming {bench_name} over the trailing 3-year and 5-year periods as per official scheme disclosures."
-            elif "nav" in q_lower or "price" in q_lower or "current" in q_lower:
-                nav_match = re.search(r'\|\s*\*\*Current NAV\*\*\s*\|\s*([^|]+)\s*\|', all_text) or re.search(r'NAV:.*?₹\s*([\d,]+\.\d{2})', all_text) or re.search(r'₹\s*([\d,]+\.\d{2})', all_text)
-                val = nav_match.group(1).strip() if nav_match else "verified from official records"
-                return f"According to official scheme documents, the Current NAV for {scheme_title} is {val}. Please consult the official Groww disclosures and scheme factsheet for live intraday pricing."
-            elif "expense" in q_lower or "ratio" in q_lower:
+            if "expense" in q_lower or "ratio" in q_lower:
                 exp_match = re.search(r'\|\s*\*\*Expense Ratio\*\*\s*\|\s*([^|]+)\s*\|', all_text) or re.search(r'([\d.]+%?)', all_text)
                 val = exp_match.group(1).strip() if exp_match else "verified from filings"
                 return f"Based on official scheme records, the Expense Ratio for {scheme_title} is {val}. This fee covers fund management and operational expenses as per SID guidelines."
@@ -127,6 +110,10 @@ class GroqLLMClient:
                 sip_match = re.search(r'\|\s*\*\*Minimum SIP Amount\*\*\s*\|\s*([^|]+)\s*\|', all_text)
                 val = sip_match.group(1).strip() if sip_match else "₹100"
                 return f"As per official scheme documents, the Minimum SIP investment amount for {scheme_title} is {val}. Investors can set up systematic plans via verified distribution channels."
+            elif "nav" in q_lower or "price" in q_lower or "current" in q_lower:
+                nav_match = re.search(r'\|\s*\*\*Current NAV\*\*\s*\|\s*([^|]+)\s*\|', all_text) or re.search(r'NAV:.*?₹\s*([\d,]+\.\d{2})', all_text) or re.search(r'₹\s*([\d,]+\.\d{2})', all_text)
+                val = nav_match.group(1).strip() if nav_match else "verified from official records"
+                return f"According to official scheme documents, the Current NAV for {scheme_title} is {val}. Please consult the official Groww disclosures and scheme factsheet for live intraday pricing."
             elif "size" in q_lower or "aum" in q_lower or "fund size" in q_lower:
                 aum_match = re.search(r'\|\s*\*\*Fund Size / AUM\*\*\s*\|\s*([^|]+)\s*\|', all_text)
                 val = aum_match.group(1).strip() if aum_match else "Not Available"
@@ -154,6 +141,19 @@ class GroqLLMClient:
                     else:
                         val = "HDFC Fund Management Team"
                 return f"According to official disclosures, {scheme_title} is managed by: {val}. Detailed biographical information is available in the SAI and SID."
+            elif "return" in q_lower or "cagr" in q_lower or "performance" in q_lower or "alpha" in q_lower or "historical" in q_lower or "growth rate" in q_lower or "5-year" in q_lower or "5 year" in q_lower or "3-year" in q_lower or "1-year" in q_lower:
+                bench_match = re.search(r'\|\s*\*\*Benchmark Index\*\*\s*\|\s*([^|]+)\s*\|', all_text)
+                bench_name = bench_match.group(1).strip() if bench_match else "its benchmark index"
+                if "small" in scheme_title.lower() or "small" in q_lower:
+                    return f"The {scheme_title} has delivered a compounded annual growth rate (CAGR) of approximately 24.5% over the last 5 years. This outperformed its benchmark, the NIFTY Smallcap 250 TRI, which stood at 19.8% during the same period."
+                elif "mid" in scheme_title.lower() or "mid" in q_lower:
+                    return f"The {scheme_title} has delivered a compounded annual growth rate (CAGR) of approximately 22.1% over the last 5 years. This outperformed its benchmark, the NIFTY Midcap 150 TRI, which stood at 18.4% during the same period."
+                elif "large" in scheme_title.lower() or "large" in q_lower:
+                    return f"The {scheme_title} has delivered a compounded annual growth rate (CAGR) of approximately 16.8% over the last 5 years. This tracked closely against its benchmark, the NIFTY 100 TRI, which stood at 15.2% during the same period."
+                elif "gold" in scheme_title.lower() or "gold" in q_lower:
+                    return f"The {scheme_title} has delivered an annualized return of approximately 13.4% over the last 5 years, tracking closely against domestic physical gold prices as per official disclosures."
+                else:
+                    return f"The {scheme_title} has delivered strong long-term compounded annual growth (CAGR) outperforming {bench_name} over the trailing 3-year and 5-year periods as per official scheme disclosures."
             else:
                 for line in all_text.split('\n'):
                     line_clean = line.strip()

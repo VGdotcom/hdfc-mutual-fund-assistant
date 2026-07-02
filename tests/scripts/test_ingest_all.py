@@ -24,6 +24,7 @@ async def test_run_ingestion_pipeline_memory():
     
     total_indexed = await run_ingestion_pipeline(
         schemes=[mock_scheme1, mock_scheme2],
+        qdrant_path=":memory:",
         collection_name="test_ingest",
         store=store
     )

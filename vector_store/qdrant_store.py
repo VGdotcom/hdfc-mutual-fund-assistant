@@ -137,6 +137,34 @@ class QdrantVectorStore:
             
         return formatted_results
 
+    def get_scheme_profile(self, scheme_name: str, collection_name: str = "hdfc_funds") -> Optional[Dict[str, Any]]:
+        """Retrieves the atomic Fund Profile table chunk for a scheme."""
+        try:
+            scroll_res = self.client.scroll(
+                collection_name=collection_name,
+                scroll_filter=rest.Filter(
+                    must=[rest.FieldCondition(key="scheme_name", match=rest.MatchValue(value=scheme_name))]
+                ),
+                limit=100,
+                with_payload=True
+            )[0]
+            for pt in scroll_res:
+                payload = pt.payload or {}
+                text = payload.get("text", "")
+                if "# Fund Profile:" in text or "| Financial Metric |" in text:
+                    return {
+                        "score": 1.0,
+                        "text": text,
+                        "scheme_name": payload.get("scheme_name"),
+                        "document_type": payload.get("document_type"),
+                        "source_url": payload.get("source_url"),
+                        "last_updated": payload.get("last_updated"),
+                        "chunk_id": payload.get("chunk_id")
+                    }
+        except Exception as e:
+            logger.warning(f"Failed to fetch profile chunk for {scheme_name}: {e}")
+        return None
+
 if __name__ == "__main__":
     store = QdrantVectorStore(path=":memory:")
     print("QdrantVectorStore initialized in memory mode.")

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+data/*.pdf
+data/*.json
+!data/schemes.json
+*.log
+.pytest_cache/
+node_modules/
+dist/
+build/
+.qdrant/

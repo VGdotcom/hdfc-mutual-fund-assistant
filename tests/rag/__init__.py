@@ -1,0 +1,1 @@
+# Tests rag package init

@@ -1,0 +1,47 @@
+name: Automated HDFC Scheme Factsheet & SID Ingestion Scheduler
+
+on:
+  schedule:
+    # 04:00 UTC corresponds exactly to 9:30 AM IST (UTC+5:30) every day
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    # Allows manual triggering from the GitHub Actions UI
+
+jobs:
+  run-ingestion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m playwright install chromium --with-deps
+
+      - name: Run Automated Scraper and Vector Indexing Pipeline
+        env:
+          QDRANT_PATH: .qdrant
+          QDRANT_COLLECTION: hdfc_funds
+          ENVIRONMENT: production
+          LOG_LEVEL: INFO
+        run: |
+          echo "Starting daily synchronization at 9:30 AM IST (04:00 UTC)..."
+          python -m scripts.ingest_all --collection hdfc_funds
+          echo "Ingestion completed successfully."
+
+      - name: Upload Qdrant Index Artifacts (Backup)
+        uses: actions/upload-artifact@v4
+        with:
+          name: qdrant-vector-db
+          path: .qdrant/
+          retention-days: 7

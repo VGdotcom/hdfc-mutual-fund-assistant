@@ -18,7 +18,7 @@ const EXAMPLE_CARDS = [
     color: "text-primary",
     title: "Expense Ratio",
     desc: "Compare costs across top performing funds.",
-    query: "What is the expense ratio of HDFC Small Cap Fund?"
+    getQuery: (scheme) => scheme ? `What is the expense ratio of ${scheme}?` : "What is the expense ratio of HDFC Small Cap Fund?"
   },
   {
     icon: "exit_to_app",
@@ -26,7 +26,7 @@ const EXAMPLE_CARDS = [
     color: "text-tertiary",
     title: "Exit Load",
     desc: "Understand redemption fees and timelines.",
-    query: "What is the exit load structure for HDFC Mid Cap Fund?"
+    getQuery: (scheme) => scheme ? `What is the exit load structure for ${scheme}?` : "What is the exit load structure for HDFC Mid Cap Fund?"
   },
   {
     icon: "payments",
@@ -34,7 +34,7 @@ const EXAMPLE_CARDS = [
     color: "text-secondary",
     title: "SIP Amount",
     desc: "Calculate minimum investments for your goals.",
-    query: "What is the minimum SIP amount for HDFC Gold ETF?"
+    getQuery: (scheme) => scheme ? `What is the minimum SIP amount for ${scheme}?` : "What is the minimum SIP amount for HDFC Gold ETF?"
   }
 ];
 
@@ -244,7 +244,7 @@ export default function App() {
                 {EXAMPLE_CARDS.map((card, idx) => (
                   <div 
                     key={idx}
-                    onClick={() => handleSendMessage(card.query)}
+                    onClick={() => handleSendMessage(card.getQuery(selectedScheme))}
                     className="glass-card p-6 rounded-2xl flex flex-col justify-between gap-3 group cursor-pointer"
                   >
                     <div>

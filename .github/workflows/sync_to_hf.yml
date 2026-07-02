@@ -1,0 +1,29 @@
+name: Sync to Hugging Face Hub
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push to Hugging Face Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE_URL: ${{ vars.HF_SPACE_URL }}
+        run: |
+          if [ -z "$HF_TOKEN" ] || [ -z "$HF_SPACE_URL" ]; then
+            echo "HF_TOKEN secret or HF_SPACE_URL variable not set in GitHub repository settings. Skipping Hugging Face sync."
+            exit 0
+          fi
+          git config --global user.name "GitHub Action Sync"
+          git config --global user.email "action@github.com"
+          # Extract domain and path without protocol if needed, or use direct basic auth URL
+          # HF_SPACE_URL should be format: huggingface.co/spaces/<username>/<space-name>
+          git remote add hf https://oauth2:$HF_TOKEN@$HF_SPACE_URL
+          git push -f hf main

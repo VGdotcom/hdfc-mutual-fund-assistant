@@ -36,7 +36,7 @@ jobs:
           LOG_LEVEL: INFO
         run: |
           echo "Starting daily synchronization at 9:30 AM IST (04:00 UTC)..."
-          python -m scripts.ingest_all --collection hdfc_funds
+          python -m scripts.ingest_all --collection hdfc_funds --force-scrape
           echo "Ingestion completed successfully."
 
       - name: Commit and Push Updated Corpus to GitHub

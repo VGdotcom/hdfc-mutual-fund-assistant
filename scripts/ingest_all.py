@@ -16,7 +16,8 @@ async def run_ingestion_pipeline(
     schemes: Optional[List[SchemeInfo]] = None,
     qdrant_path: str = ".qdrant",
     collection_name: str = "hdfc_funds",
-    store: Optional[QdrantVectorStore] = None
+    store: Optional[QdrantVectorStore] = None,
+    force_scrape: bool = False
 ) -> int:
     """
     Executes the end-to-end Phase 2.4 ingestion pipeline:
@@ -32,7 +33,7 @@ async def run_ingestion_pipeline(
         shutil.rmtree(qdrant_path, ignore_errors=True)
 
     if schemes is None:
-        if os.path.exists("data/schemes.json"):
+        if not force_scrape and os.path.exists("data/schemes.json"):
             logger.info("Loading scheme data from data/schemes.json...")
             import json
             from scraper.normalizer import SchemeInfo
@@ -90,4 +91,9 @@ async def run_ingestion_pipeline(
     return total_chunks_indexed
 
 if __name__ == "__main__":
-    asyncio.run(run_ingestion_pipeline())
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--collection", default="hdfc_funds")
+    parser.add_argument("--force-scrape", action="store_true")
+    args, _ = parser.parse_known_args()
+    asyncio.run(run_ingestion_pipeline(collection_name=args.collection, force_scrape=args.force_scrape))

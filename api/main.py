@@ -24,7 +24,7 @@ scheduler: Optional[BackgroundScheduler] = None
 def run_scheduled_sync():
     logger.info("[Scheduler] Starting background corpus synchronization...")
     try:
-        res = subprocess.run(["python", "-m", "scripts.ingest_all", "--collection", "hdfc_funds"], capture_output=True, text=True)
+        res = subprocess.run(["python", "-m", "scripts.ingest_all", "--collection", "hdfc_funds", "--force-scrape"], capture_output=True, text=True)
         if res.returncode == 0:
             logger.info("[Scheduler] Background synchronization completed successfully.")
             global retriever

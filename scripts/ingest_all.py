@@ -32,12 +32,13 @@ async def run_ingestion_pipeline(
         logger.info(f"Removing old vector cache at {qdrant_path} for clean indexing...")
         shutil.rmtree(qdrant_path, ignore_errors=True)
 
+    data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "schemes.json"))
     if schemes is None:
-        if not force_scrape and os.path.exists("data/schemes.json"):
-            logger.info("Loading scheme data from data/schemes.json...")
+        if not force_scrape and os.path.exists(data_path):
+            logger.info(f"Loading scheme data from {data_path}...")
             import json
             from scraper.normalizer import SchemeInfo
-            with open("data/schemes.json", "r") as f:
+            with open(data_path, "r") as f:
                 data = json.load(f)
                 schemes_list = data.get("schemes", data) if isinstance(data, dict) else data
                 schemes = [SchemeInfo(**item) for item in schemes_list]
@@ -45,7 +46,7 @@ async def run_ingestion_pipeline(
         else:
             logger.info("No scheme data provided. Initiating live Playwright scraping from Groww...")
             scraper = GrowwScraper()
-            scrape_res = await scraper.scrape_all()
+            scrape_res = await scraper.scrape_all(output_file=data_path)
             schemes = scrape_res.schemes
             logger.info(f"Successfully scraped {len(schemes)} schemes.")
 

@@ -2,8 +2,8 @@ name: Automated HDFC Scheme Factsheet & SID Ingestion Scheduler
 
 on:
   schedule:
-    # 04:00 UTC corresponds exactly to 9:30 AM IST (UTC+5:30) every day
-    - cron: '0 4 * * *'
+    # 03:30 UTC corresponds exactly to 9:00 AM IST (UTC+5:30) every day (off-peak minute avoids GitHub Actions queue delays)
+    - cron: '30 3 * * *'
   workflow_dispatch:
     # Allows manual triggering from the GitHub Actions UI
 
@@ -38,7 +38,7 @@ jobs:
           ENVIRONMENT: production
           LOG_LEVEL: INFO
         run: |
-          echo "Starting daily synchronization at 9:30 AM IST (04:00 UTC)..."
+          echo "Starting daily synchronization at 9:00 AM IST (03:30 UTC)..."
           python -m scripts.ingest_all --collection hdfc_funds --force-scrape
           echo "Ingestion completed successfully."
 
@@ -53,6 +53,21 @@ jobs:
             git commit -m "chore(scheduler): auto-refresh HDFC scheme factsheet data and Qdrant index"
             git push origin main
             echo "Successfully pushed updated corpus to GitHub main branch."
+          fi
+
+      - name: Sync to Hugging Face Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE_URL: ${{ vars.HF_SPACE_URL }}
+        run: |
+          if [ -z "$HF_TOKEN" ] || [ -z "$HF_SPACE_URL" ]; then
+            echo "HF_TOKEN secret or HF_SPACE_URL variable not set in GitHub repository settings. Skipping Hugging Face sync."
+          else
+            git config --global user.name "GitHub Action Scheduler"
+            git config --global user.email "action@github.com"
+            git remote add hf https://oauth2:$HF_TOKEN@$HF_SPACE_URL || git remote set-url hf https://oauth2:$HF_TOKEN@$HF_SPACE_URL
+            git push -f hf main
+            echo "Successfully synced updated corpus to Hugging Face Hub."
           fi
 
       - name: Upload Qdrant Index Artifacts (Backup)

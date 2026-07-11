@@ -13,7 +13,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 from contextlib import asynccontextmanager
+import os
 import subprocess
+import sys
 from apscheduler.schedulers.background import BackgroundScheduler
 
 # Global RAG Engine components
@@ -23,17 +25,37 @@ scheduler: Optional[BackgroundScheduler] = None
 
 def run_scheduled_sync():
     logger.info("[Scheduler] Starting background corpus synchronization...")
+    global retriever
     try:
-        res = subprocess.run(["python", "-m", "scripts.ingest_all", "--collection", "hdfc_funds", "--force-scrape"], capture_output=True, text=True)
+        if retriever and hasattr(retriever, "store") and hasattr(retriever.store, "client"):
+            logger.info("[Scheduler] Closing open Qdrant connection to release file lock for ingestion script...")
+            try:
+                retriever.store.client.close()
+            except Exception as e:
+                logger.warning(f"[Scheduler] Warning while closing Qdrant client: {e}")
+        
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        res = subprocess.run(
+            [sys.executable, "-m", "scripts.ingest_all", "--collection", "hdfc_funds", "--force-scrape"],
+            cwd=project_root,
+            capture_output=True,
+            text=True
+        )
         if res.returncode == 0:
-            logger.info("[Scheduler] Background synchronization completed successfully.")
-            global retriever
-            if retriever:
-                retriever = RAGRetriever()
+            logger.info(f"[Scheduler] Background synchronization completed successfully.\nStdout: {res.stdout}")
+            logger.info("[Scheduler] Re-initializing RAGRetriever with updated corpus...")
+            retriever = RAGRetriever()
         else:
-            logger.error(f"[Scheduler] Synchronization failed: {res.stderr}")
+            logger.error(f"[Scheduler] Synchronization failed (exit code {res.returncode}):\nStderr: {res.stderr}\nStdout: {res.stdout}")
+            logger.info("[Scheduler] Re-initializing RAGRetriever after failed sync...")
+            retriever = RAGRetriever()
     except Exception as e:
-        logger.error(f"[Scheduler] Error running synchronization: {e}")
+        logger.error(f"[Scheduler] Error running synchronization: {e}", exc_info=True)
+        try:
+            if not retriever or not hasattr(retriever, "store"):
+                retriever = RAGRetriever()
+        except Exception:
+            pass
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -43,9 +65,9 @@ async def lifespan(app: FastAPI):
     llm_client = GroqLLMClient()
     
     logger.info("Initializing background APScheduler for automated corpus synchronization...")
-    scheduler = BackgroundScheduler()
-    # Schedule daily at 04:00 UTC (9:30 AM IST)
-    scheduler.add_job(run_scheduled_sync, 'cron', hour=4, minute=0, id='daily_corpus_sync')
+    scheduler = BackgroundScheduler(timezone="UTC")
+    # Schedule daily at 03:30 UTC (9:00 AM IST)
+    scheduler.add_job(run_scheduled_sync, 'cron', hour=3, minute=30, id='daily_corpus_sync', timezone='UTC')
     scheduler.start()
     logger.info("==> RAG API and Background Scheduler Startup Complete.")
     yield

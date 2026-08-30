@@ -42,7 +42,7 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-08-29T10:21:13.704948+00:00"
+      "last_updated": "2026-08-30T09:25:42.836999+00:00"
     },
     {
       "scheme_name": "HDFC Large Cap Fund Direct Growth",
@@ -83,7 +83,7 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-08-29T10:21:17.935144+00:00"
+      "last_updated": "2026-08-30T09:25:47.233162+00:00"
     },
     {
       "scheme_name": "HDFC Small Cap Fund Direct Growth",
@@ -124,48 +124,26 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-08-29T10:21:22.012879+00:00"
+      "last_updated": "2026-08-30T09:25:51.174804+00:00"
     },
     {
-      "scheme_name": "HDFC Silver ETF FoF Direct Growth",
+      "scheme_name": "Welcome to Groww",
       "url": "https://groww.in/mutual-funds/hdfc-silver-etf-fof-direct-growth",
-      "nav": "₹39.77",
-      "expense_ratio": "0.22%",
+      "nav": null,
+      "expense_ratio": null,
       "exit_load": null,
-      "min_sip": "₹100",
-      "fund_size": "₹4,282.39 Cr",
-      "riskometer": "High Risk (Commodity / FoF)",
-      "benchmark": "Domestic Price of Silver",
-      "fund_managers": [
-        "Mutual Fund HousesKnow about AMCs, funds, fund managers",
-        "Know about AMCs, funds, fund managers"
-      ],
-      "document_links": {
-        "SID": "https://www.hdfcfund.com"
-      },
+      "min_sip": null,
+      "fund_size": null,
+      "riskometer": null,
+      "benchmark": null,
+      "fund_managers": [],
+      "document_links": {},
       "raw_text_chunks": [
-        "Stocks Invest in Stocks Invest in stocks, ETFs, IPOs with fast orders. Track returns on your stock holdings and view real-time P&L on your positions. Intraday Monitor top intraday performers in real time ETF Screener Get the best of Mutual Funds and flexibility of Stocks IPO Track upcoming and ongoing IPOs MTFs Buy now, pay later Stock Screener Filter based on RSI, PE ratio and more Stock Events Dividends, bonus, buybacks and more Demat Account Begin your stock market journey Share Market Today Live news updates from stock market",
-        "Invest in Stocks Invest in stocks, ETFs, IPOs with fast orders. Track returns on your stock holdings and view real-time P&L on your positions. Intraday Monitor top intraday performers in real time ETF Screener Get the best of Mutual Funds and flexibility of Stocks IPO Track upcoming and ongoing IPOs MTFs Buy now, pay later Stock Screener Filter based on RSI, PE ratio and more Stock Events Dividends, bonus, buybacks and more Demat Account Begin your stock market journey Share Market Today Live news updates from stock market",
-        "Invest in Stocks Invest in stocks, ETFs, IPOs with fast orders. Track returns on your stock holdings and view real-time P&L on your positions.",
-        "Invest in stocks, ETFs, IPOs with fast orders. Track returns on your stock holdings and view real-time P&L on your positions.",
-        "Intraday Monitor top intraday performers in real time ETF Screener Get the best of Mutual Funds and flexibility of Stocks IPO Track upcoming and ongoing IPOs MTFs Buy now, pay later",
-        "Intraday Monitor top intraday performers in real time",
-        "Monitor top intraday performers in real time",
-        "ETF Screener Get the best of Mutual Funds and flexibility of Stocks",
-        "Get the best of Mutual Funds and flexibility of Stocks",
-        "Stock Screener Filter based on RSI, PE ratio and more Stock Events Dividends, bonus, buybacks and more Demat Account Begin your stock market journey Share Market Today Live news updates from stock market",
-        "Stock Screener Filter based on RSI, PE ratio and more",
-        "Stock Events Dividends, bonus, buybacks and more",
-        "Demat Account Begin your stock market journey",
-        "Share Market Today Live news updates from stock market",
-        "F&O Trade in Futures & Options Trade in F&O using the terminal. View charts, indicators, track your orders , P&L and watchlists in a single space Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets Pledge Get extra balance for trading Commodities Trade in Crude Oil, Gold, Silver and more API trading Set up and execute trades through our API",
-        "Trade in Futures & Options Trade in F&O using the terminal. View charts, indicators, track your orders , P&L and watchlists in a single space Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets Pledge Get extra balance for trading Commodities Trade in Crude Oil, Gold, Silver and more API trading Set up and execute trades through our API",
-        "Trade in Futures & Options Trade in F&O using the terminal. View charts, indicators, track your orders , P&L and watchlists in a single space",
-        "Trade in F&O using the terminal. View charts, indicators, track your orders , P&L and watchlists in a single space",
-        "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
-        "Terminal Track charts, orders, positions, watchlists in one place"
+        "Simple, Free Investing. Stocks Welcome to Groww Continue with Google Or Your Email Address Continue By proceeding, I agree to T&C , Privacy Policy & Tariff Rates",
+        "Welcome to Groww Continue with Google Or Your Email Address Continue By proceeding, I agree to T&C , Privacy Policy & Tariff Rates",
+        "By proceeding, I agree to T&C , Privacy Policy & Tariff Rates"
       ],
-      "last_updated": "2026-08-29T10:21:25.949265+00:00"
+      "last_updated": "2026-08-30T09:25:54.846570+00:00"
     },
     {
       "scheme_name": "HDFC Mid Cap Fund Direct Growth",
@@ -206,7 +184,7 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-08-29T10:21:29.899037+00:00"
+      "last_updated": "2026-08-30T09:25:58.839007+00:00"
     }
   ],
   "errors": {}

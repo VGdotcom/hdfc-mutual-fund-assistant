@@ -6,11 +6,11 @@
     {
       "scheme_name": "HDFC Gold ETF Fund of Fund Direct Plan Growth",
       "url": "https://groww.in/mutual-funds/hdfc-gold-etf-fund-of-fund-direct-plan-growth",
-      "nav": "₹47.51",
+      "nav": "₹47.46",
       "expense_ratio": "0.20%",
       "exit_load": null,
       "min_sip": "₹100",
-      "fund_size": "₹11,197.05 Cr",
+      "fund_size": "₹12,359.16 Cr",
       "riskometer": "High Risk (Commodity / FoF)",
       "benchmark": "Domestic Price of Gold",
       "fund_managers": [
@@ -42,16 +42,16 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-09-09T08:20:44.140448+00:00"
+      "last_updated": "2026-09-10T08:20:52.353550+00:00"
     },
     {
       "scheme_name": "HDFC Large Cap Fund Direct Growth",
       "url": "https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth",
-      "nav": "₹1,218.25",
-      "expense_ratio": "1.02%",
+      "nav": "₹1,209.16",
+      "expense_ratio": "1.03%",
       "exit_load": null,
       "min_sip": "₹100",
-      "fund_size": "₹40,197.89 Cr",
+      "fund_size": "₹39,933.37 Cr",
       "riskometer": "Very High Risk (Equity)",
       "benchmark": "NIFTY 100 Total Return Index",
       "fund_managers": [
@@ -83,16 +83,16 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-09-09T08:20:48.275948+00:00"
+      "last_updated": "2026-09-10T08:20:56.536928+00:00"
     },
     {
       "scheme_name": "HDFC Small Cap Fund Direct Growth",
       "url": "https://groww.in/mutual-funds/hdfc-small-cap-fund-direct-growth",
-      "nav": "₹160.59",
-      "expense_ratio": "0.75%",
+      "nav": "₹159.88",
+      "expense_ratio": "0.76%",
       "exit_load": null,
       "min_sip": "₹100",
-      "fund_size": "₹41,679.00 Cr",
+      "fund_size": "₹41,890.86 Cr",
       "riskometer": "Very High Risk (Equity)",
       "benchmark": "BSE 250 SmallCap Total Return Index",
       "fund_managers": [
@@ -124,16 +124,16 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-09-09T08:20:52.167044+00:00"
+      "last_updated": "2026-09-10T08:21:00.484284+00:00"
     },
     {
       "scheme_name": "HDFC Silver ETF FoF Direct Growth",
       "url": "https://groww.in/mutual-funds/hdfc-silver-etf-fof-direct-growth",
-      "nav": "₹38.21",
-      "expense_ratio": "0.22%",
+      "nav": "₹38.42",
+      "expense_ratio": "0.21%",
       "exit_load": null,
       "min_sip": "₹100",
-      "fund_size": "₹4,282.39 Cr",
+      "fund_size": "₹4,698.50 Cr",
       "riskometer": "High Risk (Commodity / FoF)",
       "benchmark": "Domestic Price of Silver",
       "fund_managers": [
@@ -165,16 +165,16 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-09-09T08:20:56.042610+00:00"
+      "last_updated": "2026-09-10T08:21:04.271897+00:00"
     },
     {
       "scheme_name": "HDFC Mid Cap Fund Direct Growth",
       "url": "https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth",
-      "nav": "₹233.75",
-      "expense_ratio": "0.74%",
+      "nav": "₹232.27",
+      "expense_ratio": "0.75%",
       "exit_load": "01 Jan 2013 of 1% if redeemed within 1 year.",
       "min_sip": "₹100",
-      "fund_size": "₹1,05,142.69 Cr",
+      "fund_size": "₹1,08,324.55 Cr",
       "riskometer": "Very High Risk (Equity)",
       "benchmark": "NIFTY Midcap 150 Total Return Index",
       "fund_managers": [
@@ -206,7 +206,7 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-09-09T08:20:59.852267+00:00"
+      "last_updated": "2026-09-10T08:21:08.161179+00:00"
     }
   ],
   "errors": {}

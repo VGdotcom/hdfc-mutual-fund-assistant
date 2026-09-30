@@ -6,11 +6,11 @@
     {
       "scheme_name": "HDFC Gold ETF Fund of Fund Direct Plan Growth",
       "url": "https://groww.in/mutual-funds/hdfc-gold-etf-fund-of-fund-direct-plan-growth",
-      "nav": "₹45.76",
+      "nav": "₹45.52",
       "expense_ratio": "0.20%",
       "exit_load": null,
       "min_sip": "₹100",
-      "fund_size": "₹12,359.16 Cr",
+      "fund_size": "₹12,359.15 Cr",
       "riskometer": "High Risk (Commodity / FoF)",
       "benchmark": "Domestic Price of Gold",
       "fund_managers": [
@@ -42,16 +42,16 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-09-29T10:04:13.502791+00:00"
+      "last_updated": "2026-09-30T09:57:06.499790+00:00"
     },
     {
       "scheme_name": "HDFC Large Cap Fund Direct Growth",
       "url": "https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth",
-      "nav": "₹1,170.11",
+      "nav": "₹1,165.78",
       "expense_ratio": "1.03%",
       "exit_load": null,
       "min_sip": "₹100",
-      "fund_size": "₹39,933.37 Cr",
+      "fund_size": "₹39,933.36 Cr",
       "riskometer": "Very High Risk (Equity)",
       "benchmark": "NIFTY 100 Total Return Index",
       "fund_managers": [
@@ -83,12 +83,12 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-09-29T10:04:17.654733+00:00"
+      "last_updated": "2026-09-30T09:57:10.762141+00:00"
     },
     {
       "scheme_name": "HDFC Small Cap Fund Direct Growth",
       "url": "https://groww.in/mutual-funds/hdfc-small-cap-fund-direct-growth",
-      "nav": "₹157.26",
+      "nav": "₹155.95",
       "expense_ratio": "0.78%",
       "exit_load": null,
       "min_sip": "₹100",
@@ -124,12 +124,12 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-09-29T10:04:21.596659+00:00"
+      "last_updated": "2026-09-30T09:57:14.797727+00:00"
     },
     {
       "scheme_name": "HDFC Silver ETF FoF Direct Growth",
       "url": "https://groww.in/mutual-funds/hdfc-silver-etf-fof-direct-growth",
-      "nav": "₹36.31",
+      "nav": "₹36.08",
       "expense_ratio": "0.21%",
       "exit_load": null,
       "min_sip": "₹100",
@@ -165,16 +165,16 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-09-29T10:04:25.475801+00:00"
+      "last_updated": "2026-09-30T09:57:19.542626+00:00"
     },
     {
       "scheme_name": "HDFC Mid Cap Fund Direct Growth",
       "url": "https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth",
-      "nav": "₹223.17",
+      "nav": "₹221.35",
       "expense_ratio": "0.76%",
       "exit_load": "01 Jan 2013 of 1% if redeemed within 1 year.",
       "min_sip": "₹100",
-      "fund_size": "₹1,08,324.55 Cr",
+      "fund_size": "₹1,08,324.54 Cr",
       "riskometer": "Very High Risk (Equity)",
       "benchmark": "NIFTY Midcap 150 Total Return Index",
       "fund_managers": [
@@ -206,7 +206,7 @@
         "Indices Track markets across the globe Terminal Track charts, orders, positions, watchlists in one place Option chain Analyse chains, view payoffs, create baskets",
         "Terminal Track charts, orders, positions, watchlists in one place"
       ],
-      "last_updated": "2026-09-29T10:04:29.236396+00:00"
+      "last_updated": "2026-09-30T09:57:23.863943+00:00"
     }
   ],
   "errors": {}
